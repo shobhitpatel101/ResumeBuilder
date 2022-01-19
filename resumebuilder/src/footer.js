@@ -2,7 +2,7 @@
 function Footer() {
   return (
     <div className="footer">
-      <h1>footer</h1>
+      <h1 style={{textAlignVertical: "center",textAlign: "center",}}>@2022</h1>
     </div>
   );
 }
