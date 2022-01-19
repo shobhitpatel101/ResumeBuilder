@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from './logo.svg';
 import './App.css';
+<<<<<<< HEAD
 import Header from './header';
 import Footer from './footer';
 
@@ -26,6 +27,18 @@ function App() {
       </div>
      
       <Footer />
+=======
+import field from './field.js';
+
+function App() {
+  return (
+    //<field/>
+    <div className="field">
+      <label for="fname">First name:</label><br/>
+      <input type="text" id="fname" name="fname" value="John"/>
+      <br/>
+      <button id="submit">Submit</button>
+>>>>>>> 01b49acc1260dbd499ead66b9303d8dc0eee4a94
     </div>
   );
 }
