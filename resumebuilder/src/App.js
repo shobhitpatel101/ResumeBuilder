@@ -1,23 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import field from './field.js';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    //<field/>
+    <div className="field">
+      <label for="fname">First name:</label><br/>
+      <input type="text" id="fname" name="fname" value="John"/>
+      <br/>
+      <button id="submit">Submit</button>
     </div>
   );
 }
