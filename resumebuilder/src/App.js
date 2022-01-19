@@ -1,15 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import field from './field.js';
+import Field from './field.js';
+import Footer from './footer';
+import Header from './header';
 
 function App() {
+  /* jsonObject = {
+    "fname":"Shivam",
+    "lname":"Rajpoot"
+  }; */
   return (
     //<field/>
-    <div className="field">
-      <label for="fname">First name:</label><br/>
-      <input type="text" id="fname" name="fname" value="John"/>
-      <br/>
-      <button id="submit">Submit</button>
+    
+    <div className="App">
+      <Header/>
+      <Field/>
+      <Footer/>
     </div>
   );
 }
