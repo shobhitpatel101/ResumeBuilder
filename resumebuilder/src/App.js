@@ -16,8 +16,34 @@ import { render } from '@testing-library/react';
       console.log("Hello");
       const {jsPDF} = require("jspdf");
       const doc = new jsPDF();
-      doc.text("Hello World", 10, 10);
-      doc.save("a4.pdf");
+
+      const firstname = document.getElementById('firstname').value;
+      const middlename = document.getElementById('mn').value;
+      const lastname = document.getElementById('ln').value;
+      const biodetails = document.getElementById('bd').value;
+      
+      //name
+      doc.setFontSize(30);
+      var name = ""
+      if(middlename === "")
+        name = firstname + " " + lastname;
+      else
+        name = firstname + " " + middlename + " " + lastname;
+
+      doc.text(name  , 5, 20);
+
+
+      doc. setLineWidth(1);
+      doc. setDrawColor(0, 0, 0); // draw red lines.
+      doc.line(5, 25, 200, 25);    
+      
+      // bio details
+      doc.setFontSize(15);
+      doc.text(biodetails  , 5, 35);
+
+
+
+      doc.save(firstname + lastname + "_resume.pdf");
     }
 
     return (
@@ -32,15 +58,15 @@ import { render } from '@testing-library/react';
           <Col><p>Last Name</p></Col> 
         </Row>
         <Row>
-          <Col><input type='Text' placeholder='First Name'></input></Col>
-          <Col><input type='Text' placeholder='Middle Name'></input></Col>
-          <Col><input type='Text' placeholder='Last Name'></input></Col>
+          <Col><input type='Text' placeholder='First Name' id='firstname'></input></Col>
+          <Col><input type='Text' placeholder='Middle Name' id='mn'></input></Col>
+          <Col><input type='Text' placeholder='Last Name' id='ln'></input></Col>
         </Row>
         <Row><Col><hr /></Col></Row> 
         
         <Row>
           <Col><p>Bio Details</p></Col>
-          <Col><textarea></textarea></Col>
+          <Col><textarea type='Text' id='bd'></textarea></Col>
         </Row>
 
         <Row><Col><hr /></Col></Row> 
@@ -158,10 +184,14 @@ import { render } from '@testing-library/react';
           <Col><textarea></textarea></Col>
         </Row>
 
+        <Row>
+          <Col><Button onClick={generatePdf}>Generate PDF</Button></Col>
+        </Row>
 
-      <Button onClick={generatePdf}>Generate PDF</Button>
 
     </Container>
+
+    <hr/>
 
       <Footer />
       </div>
