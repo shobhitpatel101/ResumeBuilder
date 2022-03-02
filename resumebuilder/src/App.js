@@ -10,9 +10,21 @@ import { render } from '@testing-library/react';
 //componentDidMount() {}
 
 
-  function App(){
+  class App extends React.Component{
 
-    function generatePdf(){
+    constructor(props) {
+      super(props);
+
+      this.handleClick = this.handleClick.bind(this);
+
+    this.state = {
+      workexArray : [],
+      index : 1
+    }
+
+    }
+    
+    generatePdf(){
       console.log("Hello");
       const {jsPDF} = require("jspdf");
       const doc = new jsPDF();
@@ -46,6 +58,22 @@ import { render } from '@testing-library/react';
       doc.save(firstname + lastname + "_resume.pdf");
     }
 
+    workexStruct(i){
+    return <Row key={i}><div><Container><Row><Col><input type='CheckBox'/></Col></Row><Row><Col>Company Name</Col><Col><input type='Text' placeholder='Company Name'/></Col></Row><Row><Col>Start Date</Col><Col><input type='Date'/></Col><Col>End Date</Col><Col><input type='Date'/></Col></Row><Row><Col>Title</Col><Col><input type='Text' placeholder='Title'/></Col></Row><Row><Col>Work Description</Col><Col><input type='Text' placeholder='Work Description'/></Col></Row><Row><Col>Technology Used</Col><Col><input type='Text' placeholder='Technology Used'/></Col></Row></Container></div></Row>;
+    }
+
+    index = 0
+    handleClick(i){
+      var arr = this.state.workexArray
+      this.index+=1
+      arr.push(this.index)
+
+      this.setState({
+        workexArray : arr
+      });
+    }
+
+    render(){
     return (
       <div>
       <Header />
@@ -73,7 +101,6 @@ import { render } from '@testing-library/react';
         
         <Row>
           <Col><p>Work Experience</p></Col>
-          <Col><Button variant="success">Add</Button>{' '} </Col> 
         </Row>
         <Row>
           <div>
@@ -106,8 +133,12 @@ import { render } from '@testing-library/react';
               
             </Container>
           </div>
-      
         </Row>
+
+        {this.state.workexArray.map(this.workexStruct)}
+
+        <Row>   <Col><Button variant="success" onClick={this.handleClick}>Add</Button>{' '} </Col>  </Row>
+   
 
         <Row><Col><hr /></Col></Row> 
 
@@ -185,7 +216,7 @@ import { render } from '@testing-library/react';
         </Row>
 
         <Row>
-          <Col><Button onClick={generatePdf}>Generate PDF</Button></Col>
+          <Col><Button onClick={this.generatePdf}>Generate PDF</Button></Col>
         </Row>
 
 
@@ -197,6 +228,7 @@ import { render } from '@testing-library/react';
       </div>
     );
   }
+}
 
 
 export default App;
